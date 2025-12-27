@@ -16,10 +16,11 @@ func ConnectDB(cfg *config.EnvConfig) {
 	var err error
 
 	dsn := fmt.Sprintf(
-		"%s:%s@tcp(%s:3306)/%s?parseTime=true",
+		"%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		cfg.DBUser,
 		cfg.DBPassword,
 		cfg.DBHost,
+		cfg.DBPort,
 		cfg.DBName,
 	)
 

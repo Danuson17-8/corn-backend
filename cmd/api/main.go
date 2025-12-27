@@ -28,7 +28,7 @@ func main() {
 
 	// CORS
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "http://localhost:5173",
+		AllowOrigins:     "http://localhost:5173,https://corncornn.onrender.com",
 		AllowMethods:     "GET,POST,PUT,DELETE,OPTIONS",
 		AllowHeaders:     "Content-Type, Authorization",
 		AllowCredentials: true,
@@ -82,5 +82,6 @@ func main() {
 	app.Get("/promotion", promotionHandler.GetActive)
 	app.Post("/contact", contactHandler.Create)
 
-	log.Fatal(app.Listen(":5000"))
+	log.Fatal(app.Listen(":" + cfg.ServerPort))
+
 }
