@@ -28,7 +28,7 @@ func main() {
 
 	// CORS
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "https://corncornn.onrender.com, http://localhost:5173",
+		AllowOrigins:     "https://corncornn.onrender.com",
 		AllowMethods:     "GET,POST,PUT,DELETE,OPTIONS",
 		AllowHeaders:     "Content-Type, Authorization",
 		AllowCredentials: true,
