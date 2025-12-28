@@ -1,29 +1,25 @@
 package utils
 
 import (
+	"fmt"
 	"net/smtp"
 	"os"
 
 	"github.com/Danuson17-8/corn-backend/config"
 )
 
-func SendEmail(cfg *config.EnvConfig, to string, subject string, body string) error {
+func SendEmail(cfg *config.EnvConfig, to, subject, body string) error {
 	from := os.Getenv("EMAIL_USER")
 	password := os.Getenv("EMAIL_PASS")
-
-	msg := "From: " + from + "\n" +
-		"To: " + to + "\n" +
-		"Subject: " + subject + "\n\n" +
-		body
-
-	// Gmail SMTP
-	err := smtp.SendMail(
-		"smtp.gmail.com:587",
-		smtp.PlainAuth("", from, password, "smtp.gmail.com"),
+	auth := smtp.PlainAuth(
+		"",
 		from,
-		[]string{to},
-		[]byte(msg),
+		password,
+		"smtp.gmail.com",
 	)
 
-	return err
+	msg := fmt.Sprintf("From: %s\r\nTo: %s\r\nSubject: %s\r\n\r\n%s",
+		from, to, subject, body)
+
+	return smtp.SendMail("smtp.gmail.com:587", auth, from, []string{to}, []byte(msg))
 }
