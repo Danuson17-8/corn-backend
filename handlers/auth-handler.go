@@ -41,7 +41,7 @@ func (h *AuthHandler) SendCode(c *fiber.Ctx) error {
 		Value:    otpSession,
 		HTTPOnly: true,
 		Secure:   true,
-		SameSite: fiber.CookieSameSiteStrictMode,
+		SameSite: fiber.CookieSameSiteNoneMode,
 		MaxAge:   300,
 		Path:     "/",
 	})
@@ -79,7 +79,7 @@ func (h *AuthHandler) VerifyCode(c *fiber.Ctx) error {
 		Value:    authSession,
 		HTTPOnly: true,
 		Secure:   true,
-		SameSite: fiber.CookieSameSiteLaxMode,
+		SameSite: fiber.CookieSameSiteNoneMode,
 		MaxAge:   86400,
 		Path:     "/",
 	})
