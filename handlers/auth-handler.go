@@ -139,7 +139,7 @@ func (h *AuthHandler) Login(c *fiber.Ctx) error {
 		Value:    token,
 		HTTPOnly: true,
 		Secure:   true,
-		SameSite: fiber.CookieSameSiteLaxMode,
+		SameSite: fiber.CookieSameSiteNoneMode,
 		MaxAge:   86400,
 		Path:     "/",
 	})
