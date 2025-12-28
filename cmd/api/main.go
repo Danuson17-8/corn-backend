@@ -6,7 +6,6 @@ import (
 	"github.com/Danuson17-8/corn-backend/config"
 	"github.com/Danuson17-8/corn-backend/db"
 	"github.com/Danuson17-8/corn-backend/handlers"
-	"github.com/Danuson17-8/corn-backend/middlewares"
 	"github.com/Danuson17-8/corn-backend/repositories"
 	"github.com/Danuson17-8/corn-backend/services"
 
@@ -72,7 +71,7 @@ func main() {
 
 	identity := app.Group("/identity")
 	identity.Get("/profile",
-		middlewares.RequireAuth(jwtService),
+		//middlewares.RequireAuth(jwtService),
 		profileHandler.GetProfile,
 	)
 
