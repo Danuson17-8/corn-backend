@@ -154,6 +154,8 @@ func (h *AuthHandler) Logout(c *fiber.Ctx) error {
 		Path:     "/",
 		MaxAge:   -1,
 		HTTPOnly: true,
+		Secure:   true,
+		SameSite: fiber.CookieSameSiteNoneMode,
 	})
 
 	return Success(c, "Logged out")
