@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"github.com/Danuson17-8/corn-backend/config"
 	"github.com/Danuson17-8/corn-backend/models"
 	"github.com/Danuson17-8/corn-backend/services"
 	"github.com/Danuson17-8/corn-backend/utils"
@@ -30,15 +29,15 @@ func (h *AuthHandler) SendCode(c *fiber.Ctx) error {
 	// if err != nil || !ok {
 	// 	return Error(c, 403, "Captcha verification failed")
 	// }
-	cfg := config.NewEnvConfig()
-	otpSession, err := h.OTP.SendOTP(cfg, body.Email)
-	if err != nil {
-		return Error(c, 500, "Cannot send OTP")
-	}
+	//cfg := config.NewEnvConfig()
+	//otpSession, err := h.OTP.SendOTP(cfg, body.Email)
+	//if err != nil {
+	//	return Error(c, 500, "Cannot send OTP")
+	//}
 
 	c.Cookie(&fiber.Cookie{
 		Name:     "otp_session",
-		Value:    otpSession,
+		Value:    "test",
 		HTTPOnly: true,
 		Secure:   true,
 		SameSite: fiber.CookieSameSiteNoneMode,
