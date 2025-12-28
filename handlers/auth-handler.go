@@ -24,11 +24,11 @@ func (h *AuthHandler) SendCode(c *fiber.Ctx) error {
 		return Error(c, 400, "Captcha required")
 	}
 
-	//ip := c.Get("CF-Connecting-IP")
-	// ok, err := utils.VerifyTurnstile(body.Captcha, ip)
-	// if err != nil || !ok {
-	// 	return Error(c, 403, "Captcha verification failed")
-	// }
+	ip := c.Get("CF-Connecting-IP")
+	ok, err := utils.VerifyTurnstile(body.Captcha, ip)
+	if err != nil || !ok {
+		return Error(c, 403, "Captcha verification failed")
+	}
 	//cfg := config.NewEnvConfig()
 	//otpSession, err := h.OTP.SendOTP(cfg, body.Email)
 	//if err != nil {
