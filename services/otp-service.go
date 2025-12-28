@@ -20,12 +20,14 @@ func (s *OTPService) SendOTP(cfg *config.EnvConfig, email string) (string, error
 	code := rand.Intn(900000) + 100000
 	expired := time.Now().Add(5 * time.Minute)
 	session := utils.RandomToken(32)
+	body := GenerateOTPEmailTemplate(code)
 
 	if err := s.Repo.Upsert(email, code, session, expired); err != nil {
 		return "", err
 	}
 
-	if err := utils.SendEmail(cfg, email, "Corn Corn", fmt.Sprintf("OTP is: %d", code)); err != nil {
+	if err := utils.SendEmail(email, "Corn Corn OTP", body); err != nil {
+		fmt.Println("SendEmail error:", err)
 		return "", err
 	}
 
